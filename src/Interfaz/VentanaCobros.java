@@ -12,7 +12,30 @@ import modelo.cobros.Pago;
 import modelo.factura.Factura;
 
 public class VentanaCobros extends javax.swing.JFrame implements Observer{
-
+    
+    @Override
+    public void update() {
+        updateTable();
+    }
+    
+    public void updateTable() {
+        LinkedList<Factura> list = ctrl.getAllFacturas();
+        DefaultTableModel model = (DefaultTableModel) tableFacturas.getModel();
+        model.setRowCount(0);
+        for (Factura fac : list) {
+            if (!fac.isPagado()) {
+                Object[] o = new Object[]{
+                    fac.getCodigo(),
+                    dateToString(fac.getFecha()),
+                    fac.getVendedor().getNombre(),
+                    fac.getCliente().getNombre(),
+                    fac.isPagado()
+                };
+                model.addRow(o);
+            }
+        }
+    }
+    
     public VentanaCobros(Control c) {
         initComponents();
         ctrl = c;
@@ -24,11 +47,6 @@ public class VentanaCobros extends javax.swing.JFrame implements Observer{
         updateTable();
         addActions();
     }
-    private void setBlank() {
-        pago.setText("");
-        totalAPagar.setEditable(false);
-        codigoFactura.setText("");
-    }
     private void initButtons() {
         ButtonGroup group = new ButtonGroup();
         group.add(cheque);
@@ -37,23 +55,6 @@ public class VentanaCobros extends javax.swing.JFrame implements Observer{
         efectivo.setSelected(true);
     }
     
-    @Override
-    public void update() {
-        updateTable();
-    }
-    public void updateTable() {
-        LinkedList<Factura> list= ctrl.getAllFacturas();
-        DefaultTableModel model = (DefaultTableModel) tableFacturas.getModel();
-        model.setRowCount(0);
-        Object o[];
-         for (Factura fac : list) {
-           if (!fac.isPagado()) {
-                o = new Object[]{fac.getCodigo(), dateToString(fac.getFecha()), fac.getVendedor().getNombre(), fac.getCliente().getNombre(), fac.isPagado()};
-                model.addRow(o);
-           }
-        }
-    }
-
     private void addActions() {
        tableFacturas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -294,8 +295,19 @@ public class VentanaCobros extends javax.swing.JFrame implements Observer{
         Pago  pag = new Pago(fac, tipoPago, totalPago, count, count1);
         ctrl.addPago(pag);
         pag.imprimirPDF();
+        update();
+        setBlank();
+        tableFacturas.clearSelection();
     }//GEN-LAST:event_pagarActionPerformed
 
+    private void setBlank() {
+    pago.setText("");
+    totalAPagar.setText("");
+    codigoFactura.setText("");
+    vuelto.setText("");
+    efectivo.setSelected(true);
+}
+    
     private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
         this.dispose();
         ctrl.mostrarMenu();

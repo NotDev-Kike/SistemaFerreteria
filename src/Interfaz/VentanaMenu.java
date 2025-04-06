@@ -254,10 +254,12 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnCobrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrosActionPerformed
+        this.dispose();
         ctrl.mostrarCobro();
     }//GEN-LAST:event_btnCobrosActionPerformed
 
     private void btnDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespachoActionPerformed
+        this.dispose();
         ctrl.mostrarDespacho();
     }//GEN-LAST:event_btnDespachoActionPerformed
 

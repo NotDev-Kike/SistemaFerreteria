@@ -584,12 +584,13 @@ public class VentanaCliente extends javax.swing.JFrame {
                 ctrl.deleteCliente(cedula.getText());
                 JOptionPane.showMessageDialog(this, "Cliente borrado con exito", "AVISO", 1);
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al borrar el cliente: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Cliente inexistente", "ERROR", 0);
         }
         cedula.setText("");
-        existencia.setText(" ");
+        existencia.setText("");
     }//GEN-LAST:event_borrarActionPerformed
 
     private void buscarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBActionPerformed

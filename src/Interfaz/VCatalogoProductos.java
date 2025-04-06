@@ -135,7 +135,7 @@ public class VCatalogoProductos extends javax.swing.JFrame implements Observer{
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                throw new UnsupportedOperationException("Not supported yet.");
             }
 
         });
@@ -861,7 +861,6 @@ public class VCatalogoProductos extends javax.swing.JFrame implements Observer{
         precioUnitario = Double.parseDouble(txtFieldPrecioUnitario.getText());
         costoProducto = Double.parseDouble(costoText);
     } catch (NumberFormatException e) {
-        // Manejo de error si no se puede convertir el texto a double
         JOptionPane.showMessageDialog(this, "Error en el formato de precio o costo", "Error", JOptionPane.ERROR_MESSAGE);
         return; 
     }

@@ -1,6 +1,8 @@
 package control;
 
+
 import Interfaz.*;
+import interfaces.Observer;
 import java.util.Date;
 import java.util.LinkedList;
 import modelo.Modelo;
@@ -18,7 +20,6 @@ public class Control {
         login = new VentanaLogin(this);
         menu = new VentanaMenu(this);
         ventas = new VentanaVentas(this);
-        //clientes = new VCatalogoClientes(this);
         clientes = new VentanaCliente(this);
         productos = new VCatalogoProductos(this);
         empleados = new VMantListaEmple(this);
@@ -33,6 +34,8 @@ public class Control {
         modelo.agregar(inventario);
         modelo.agregar(despacho);
         modelo.agregar(cobro);
+
+        addObserver(cobro);
     }
 
     public void mostrarLogin() {
@@ -95,7 +98,7 @@ public class Control {
     public void mostrarClientes() {
         clientes.show();
     }
-    
+
     public void mostrarVentas() {
         ventas.setFactura(new Factura());
         ventas.setFecha(new Date());
@@ -105,7 +108,7 @@ public class Control {
     public void mostrarVEmpleados() {
         empleados.show();
     }
-    
+
     public void mostrarProductos() {
         productos.show();
     }
@@ -119,7 +122,7 @@ public class Control {
     }
 
     public boolean verificarExistenciaProducto(String codigo) {
-        return (modelo.getProducto(codigo) != null) ? true : false;
+        return modelo.getProducto(codigo) != null;
     }
 
     public void deleteProducto(String cod) {
@@ -138,6 +141,7 @@ public class Control {
         try {
             modelo.deleteEmpleado(id);
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -193,7 +197,6 @@ public class Control {
 
     public Factura getFacturaByCod(int cod) {
         return modelo.getFacturaByCod(cod);
-
     }
 
     public LinkedList<Factura> getAllFacturas() {
@@ -203,12 +206,12 @@ public class Control {
     public void updateFactura(Factura factura) {
         modelo.updateFactura(factura);
     }
-    
+
     public void addFactura(Factura factura) {
         modelo.addFactura(factura);
+        notifyObservers(); // Notifica a VentanaCobros para actualizar la tabla
     }
 
-    //PAGO
     public void addPago(Pago pago) {
         modelo.addPago(pago);
     }
@@ -217,16 +220,38 @@ public class Control {
         return modelo.getSumOfProduct(idProducto);
     }
 
+    public void insertarInventario(String fecha, String codProducto, int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    // ------------------------
+    // SISTEMA DE OBSERVADORES
+    // ------------------------
+
+    private LinkedList<Observer> observers = new LinkedList<>();
+
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update();
+        }
+    }
+
+    // ------------------------
+    // VARIABLES INTERNAS
+    // ------------------------
+
     private Modelo modelo;
     private VentanaLogin login;
     private VentanaMenu menu;
     private VentanaVentas ventas;
-    //private VCatalogoClientes clientes;
     private VentanaCliente clientes;
     private VCatalogoProductos productos;
     private VMantListaEmple empleados;
     private VInventario inventario;
     private VentanaCobros cobro;
     private VentanaDespacho despacho;
-
 }

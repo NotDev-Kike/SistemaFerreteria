@@ -136,7 +136,7 @@ public class VMantListaEmple extends javax.swing.JFrame {
         vendedor.setText("Vendedor");
 
         cajero.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cajero.setText("Cajero");
+        cajero.setText("Bodeguero");
 
         despachador.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         despachador.setText("Despachador");
@@ -145,7 +145,7 @@ public class VMantListaEmple extends javax.swing.JFrame {
         administrador.setText("Administrador");
 
         bodeguero.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bodeguero.setText("Bodeguero");
+        bodeguero.setText("Cajero");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,7 +185,7 @@ public class VMantListaEmple extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(btnAgregar)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

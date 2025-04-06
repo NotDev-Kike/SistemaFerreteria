@@ -125,7 +125,7 @@
                               <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="309" max="32767" attributes="0"/>
+                      <EmptySpace pref="289" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -256,7 +256,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cajero"/>
+                <Property name="text" type="java.lang.String" value="Bodeguero"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="despachador">
@@ -280,7 +280,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Bodeguero"/>
+                <Property name="text" type="java.lang.String" value="Cajero"/>
               </Properties>
             </Component>
           </SubComponents>
